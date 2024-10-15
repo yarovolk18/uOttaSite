@@ -1,0 +1,229 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+@import url("https://fonts.cdnfonts.com/css/harabara");
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap");
+
+.text-jost {
+  font-family: "Jost", sans-serif; /* Optional: Create a class for specific elements */
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color: rgb(var(--foreground-rgb));
+  background-image: url("../assets/Background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.coloured-text {
+  content: attr(data-text);
+  position: relative;
+  width: 100%;
+  white-space: nowrap;
+  background: radial-gradient(
+        19.58% 127.5% at 68.1% 60%,
+        rgba(117, 166, 252, 0.5) 0%,
+        rgba(188, 160, 221, 0) 100%
+      )
+      /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
+    radial-gradient(
+        11.9% 81.37% at 56.13% 72.5%,
+        rgba(180, 154, 218, 0.5) 0%,
+        rgba(188, 160, 221, 0) 100%
+      )
+      /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
+    radial-gradient(
+        9.22% 60% at 43.87% 90%,
+        rgba(244, 163, 183, 0.5) 0%,
+        rgba(244, 164, 231, 0) 100%
+      )
+      /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
+    radial-gradient(
+        27.3% 278.55% at 31.29% 95%,
+        rgba(255, 78, 195, 0.5) 0%,
+        rgba(255, 171, 237, 0) 100%
+      )
+      /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
+    #ffffff;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.coloured-text::after {
+  content: attr(data-text);
+  position: absolute;
+  transform: translateX(-100%);
+  color: transparent;
+  text-shadow: 1px 1px 0 #caa17c, -1px 1px 0 #c75bf4, 1px -1px 0 #f67258,
+    -1px -1px 0 #f65745, 1px 0 0 #df6557, 0 1px 0 #f83df1, -1px 0 0 #14c7ff,
+    0 -1px 0 #caa17c;
+  filter: blur(3.5px); /* Blur the shadow */
+  z-index: -1;
+  animation: textRotateGradient 5s linear infinite;
+}
+
+.coloured-text:before {
+  content: attr(data-text);
+  position: relative;
+  z-index: 1; /* Place text in front of shadow */
+}
+
+.hover-coloured-text {
+  content: attr(data-text);
+  position: relative;
+  width: 100%;
+  white-space: nowrap;
+  background: radial-gradient(rgba(117, 166, 252, 0.5), rgba(188, 160, 221, 0))
+      center / 19.58% 127.5%,
+    radial-gradient(rgba(180, 154, 218, 0.5), rgba(188, 160, 221, 0)) center /
+      11.9% 81.37%,
+    radial-gradient(rgba(244, 163, 183, 0.5), rgba(244, 164, 231, 0)) center /
+      9.22% 60%,
+    radial-gradient(rgba(255, 78, 195, 0.5), rgba(255, 171, 237, 0)) center /
+      27.3% 278.55%,
+    #ffffff;
+  background-repeat: no-repeat;
+  background-position: 68.1% 60%, 56.13% 72.5%, 43.87% 90%, 31.29% 95%, center;
+  transition: background-size 0.2s cubic-bezier(0.12, 1, 0.86, 0.68);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 0% 0%;
+}
+
+.hover-coloured-text:hover {
+  background-size: 2vh 15vh;
+}
+
+@keyframes textRotateGradient {
+  0% {
+    text-shadow: 1px 1px 0 #caa17c, -1px 1px 0 #c75bf4, 1px -1px 0 #f67258,
+      -1px -1px 0 #f65745, 1px 0 0 #df6557, 0 1px 0 #f83df1, -1px 0 0 #14c7ff,
+      0 -1px 0 #caa17c;
+  }
+  50% {
+    text-shadow: 1px 1px 0 #14c7ff, -1px 1px 0 #caa17c, 1px -1px 0 #c75bf4,
+      -1px -1px 0 #f67258, 1px 0 0 #f65745, 0 1px 0 #df6557, -1px 0 0 #f83df1,
+      0 -1px 0 #caa17c;
+  }
+}
+
+@keyframes textRotateGradientBG {
+  0% {
+    background: radial-gradient(
+        19.58% 127.5% at 68.1% 60%,
+        rgba(117, 166, 252, 0.5) 0%,
+        rgba(188, 160, 221, 0) 100%
+      ),
+      radial-gradient(
+        11.9% 81.37% at 56.13% 72.5%,
+        rgba(180, 154, 218, 0.5) 0%,
+        rgba(188, 160, 221, 0) 100%
+      ),
+      radial-gradient(
+        9.22% 60% at 43.87% 90%,
+        rgba(244, 163, 183, 0.5) 0%,
+        rgba(244, 164, 231, 0) 100%
+      ),
+      radial-gradient(
+        27.3% 278.55% at 31.29% 95%,
+        rgba(255, 78, 195, 0.5) 0%,
+        rgba(255, 171, 237, 0) 100%
+      ),
+      #ffffff;
+  }
+  50% {
+    background: radial-gradient(
+        19.58% 127.5% at 31.29% 5%,
+        rgba(117, 166, 252, 0.5) 0%,
+        rgba(188, 160, 221, 0) 100%
+      ),
+      radial-gradient(
+        11.9% 81.37% at 43.87% 27.5%,
+        rgba(180, 154, 218, 0.5) 0%,
+        rgba(188, 160, 221, 0) 100%
+      ),
+      radial-gradient(
+        9.22% 60% at 56.13% 10%,
+        rgba(244, 163, 183, 0.5) 0%,
+        rgba(244, 164, 231, 0) 100%
+      ),
+      radial-gradient(
+        27.3% 278.55% at 68.1% 5%,
+        rgba(255, 78, 195, 0.5) 0%,
+        rgba(255, 171, 237, 0) 100%
+      ),
+      #ffffff;
+  }
+  100% {
+    background: radial-gradient(
+        19.58% 127.5% at 68.1% 60%,
+        rgba(117, 166, 252, 0.5) 0%,
+        rgba(188, 160, 221, 0) 100%
+      ),
+      radial-gradient(
+        11.9% 81.37% at 56.13% 72.5%,
+        rgba(180, 154, 218, 0.5) 0%,
+        rgba(188, 160, 221, 0) 100%
+      ),
+      radial-gradient(
+        9.22% 60% at 43.87% 90%,
+        rgba(244, 163, 183, 0.5) 0%,
+        rgba(244, 164, 231, 0) 100%
+      ),
+      radial-gradient(
+        27.3% 278.55% at 31.29% 95%,
+        rgba(255, 78, 195, 0.5) 0%,
+        rgba(255, 171, 237, 0) 100%
+      ),
+      #ffffff;
+  }
+}
+
+.text-shadow {
+  color: white; /* Text color */
+  font-size: 1.25rem; /* Equivalent to text-xl */
+  margin-top: -1.5rem; /* Equivalent to -mt-6 */
+  text-align: center; /* Equivalent to text-center */
+  font-style: italic; /* Equivalent to italic */
+
+  /* Text shadow effect with lighter shadows */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4),
+    /* Smaller shadow with lighter opacity */ 2px 2px 3px rgba(0, 0, 0, 0.4); /* Larger shadow with lighter opacity */
+}
