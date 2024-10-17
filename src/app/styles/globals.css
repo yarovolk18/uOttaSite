@@ -30,7 +30,7 @@ body {
     "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   color: rgb(var(--foreground-rgb));
-  background-image: url("../assets/Background.png");
+  background-image: url("../assets/bg.svg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

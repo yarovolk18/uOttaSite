@@ -2,45 +2,46 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import styles from '../styles/MainHeader.module.css';
 import logoImage from '../assets/colourLogo.svg';
 import mlh from "../assets/MLH.png";
-import Logo2018 from '../assets/uOttaLOGO2018.png';
-import Logo2019 from '../assets/uOttaLOGO2019.png';
-import Logo2020 from '../assets/uOttaLOGO2020.png';
-import Logo2021 from '../assets/uOttaLOGO2021.png';
-import Logo2023 from '../assets/uOttaLOGO2023.png';
-import Logo2024 from '../assets/uOttaLOGO2024.png';
 
 const MainHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [width, setWidth] = useState(0);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleMenu = () => setIsOpen(!isOpen);
 
-  const updateWidth = () => {
-    const newWidth = window.innerWidth;
-    setWidth(newWidth);
-  };
+  const updateWidth = () => setWidth(window.innerWidth);
 
   useEffect(() => {
     window.addEventListener('resize', updateWidth);
     updateWidth();
-    return () => {
-      window.removeEventListener('resize', updateWidth);
-    };
+    return () => window.removeEventListener('resize', updateWidth);
   }, []);
 
   return (
-    <header className={`${styles.header} items-center p-4 shadow-md`}>
-      {(width < 700) && (
-        <>
-          <div className="md:hidden inline-block items-center">
-            <button onClick={toggleMenu} className="pt-1 text-white focus:outline-none">
+    <header className="relative bg-transparent text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="flex items-center justify-between py-4">
+          {/* Left Logo */}
+          <div className="flex items-center space-x-4">
+            <img src={logoImage.src} alt="Logo" className="w-12 h-12" />
+          </div>
+
+          {/* Center Links */}
+          {width >= 700 && (
+            <nav className="flex-1 flex justify-center space-x-16 text-sm font-light">
+              <Link href="https://www.uottahack.ca/" target="__blank" className="hover:underline">About</Link>
+              <Link href="https://www.uottahack.ca/events" target="__blank" className="hover:underline">Past Events</Link>
+              <Link href="https://www.uottahack.ca/faq" target="__blank" className="hover:underline">FAQs</Link>
+            </nav>
+          )}
+
+          {/* Mobile Menu Button */}
+          {width < 700 && (
+            <button onClick={toggleMenu} className="block md:hidden">
               <svg
-                className="w-6 h-6"
+                className="w-8 h-8"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -54,109 +55,33 @@ const MainHeader = () => {
                 ></path>
               </svg>
             </button>
-          </div>
-          <div className={styles.headerLogo}>
-            <img width="70px" src={logoImage.src} alt="Logo" />
-          </div>
-          <nav className={`w-full flex flex-row space-x-5 mt-8 items-center justify-center text-center md:hidden ${styles.vertMenu} ${isOpen ? styles.open : ''}`}>
-            {/* <Link className="pt-2" href="#">
-              <span className="text-white hover-coloured-text">Home</span>
-            </Link> */}
-            <Link className="pt-2" href="https://2018.uottahack.ca">
-                <span className="text-white p-0 hover-coloured-text">
-                  <img width="30px" src={Logo2018.src} alt = "Logo" className='mx-auto'/>
-                  2018
-                </span>
-            </Link>
-            <Link className="pt-2" href="https://2019.uottahack.ca">                
-                <span className="text-white p-0 hover-coloured-text">
-                  <img width="30px" src={Logo2019.src} alt = "Logo" className='mx-auto'/>
-                  2019
-                </span>
-            </Link>
-            <Link className="pt-2" href="https://2020.uottahack.ca">
-              <span className="text-white p-0 hover-coloured-text">
-                  <img width="30px" src={Logo2020.src} alt = "Logo" className='mx-auto'/>
-                  2020
-              </span>
-            </Link>
-            <Link className="pt-2" href="https://2021.uottahack.ca">
-              <span className="text-white p-0 hover-coloured-text">
-                <img width="30px" src={Logo2021.src} alt = "Logo" className='mx-auto'/>
-                2021
-              </span>
-            </Link>
-            <Link className="pt-2" href="https://2023.uottahack.ca">
-              <span className="text-white p-0 hover-coloured-text">
-                <img width="30px" src={Logo2023.src} alt = "Logo" className='mx-auto'/>
-                2023
-              </span>
-            </Link>
-            <Link className="pt-2" href="https://2024.uottahack.ca">
-              <span className="text-white p-0 hover-coloured-text">
-                <img width="30px" src={Logo2024.src} alt = "Logo" className='mx-auto'/>
-                2024
-              </span>
-            </Link>
-            <img src={mlh.src} alt=""className="absolute top-[-0.5rem] right-1 w-[3rem] h-[6rem] " />
-          </nav>
-        </>
+          )}
 
-        
-
-      )}
-      {(width >= 700) && (
-        <>
-          <div className={styles.headerLogo}>
-            <img width="50px" src={logoImage.src} alt="Logo" />
+          {/* MLH Badge */}
+          <div className="absolute top-0 right-0 h-full flex items-start">
+            <img
+              src={mlh.src}
+              alt="MLH 2025 Badge"
+              className="h-[190%] w-auto"
+            />
           </div>
-          <div className={styles.horMenu}>
-            <Link href="https://2018.uottahack.ca/">
-              <div className='photoColumn'>
-                <img width="50px" src={Logo2018.src} alt = "Logo"/>
-                <span className="text-white p-10 hover-coloured-text">2018</span>
-              </div>
-            </Link>
-            <Link href="https://2019.uottahack.ca/">
-              <div className='photoColumn'>
-                <img width="50px" src={Logo2019.src} alt = "Logo"/>
-                <span className="text-white p-10 hover-coloured-text">2019</span>
-              </div>
-            </Link>
-            <Link href="https://2020.uottahack.ca/">
-              <div className='photoColumn'>
-                <img width="50px" src={Logo2020.src} alt = "Logo"/>
-                <span className="text-white p-10 hover-coloured-text">2020</span>
-              </div>
-            </Link>
-            <Link href="https://2021.uottahack.ca/">
-              <div className='photoColumn'>
-                <img width="50px" src={Logo2021.src} alt = "Logo"/>
-                <span className="text-white p-10 hover-coloured-text">2021</span>
-              </div>
-            </Link>
-            <Link href="https://2023.uottahack.ca">
-              <div className='photoColumn'>
-                <img width="50px" src={Logo2023.src} alt = "Logo"/>
-                <span className="text-white coloured-text p-10 hover-coloured-text">2023</span>
-              </div>
-            </Link>
-            <Link href="https://2024.uottahack.ca/">
-              <div className='photoColumn'>
-                <img width="50px" src={Logo2024.src} alt = "Logo"/>
-                <span className="text-white p-10 hover-coloured-text">2024</span>
-              </div>
-            </Link>
-            <img src={mlh.src} alt="" className="absolute top-0 right-20 w-[8.24rem] h-[15.5rem] "/>
         </div>
-          
-        </>
+      </div>
+
+      {/* Mobile Menu */}
+      {isOpen && width < 700 && (
+        <nav className="absolute top-16 left-0 w-full bg-[#01A2D9] text-center py-4">
+          <Link href="#" className="block py-2">About</Link>
+          <Link href="#" className="block py-2">Past Events</Link>
+          <Link href="#" className="block py-2">FAQs</Link>
+        </nav>
       )}
     </header>
   );
 };
 
 export default MainHeader;
+
 
 // OLD SECTION TO BE REUSED, DO NOT DELETE
 // return (
@@ -239,3 +164,41 @@ export default MainHeader;
             </Link>
             <img src={mlh.src} alt="" className="absolute top-0 right-20 w-[8.24rem] h-[15.5rem] "/>
         </div> */}
+/*
+        <Link href="https://2018.uottahack.ca/">
+              <div className='photoColumn'>
+                <img width="50px" src={Logo2018.src} alt = "Logo"/>
+                <span className="text-white p-10 hover-coloured-text">2018</span>
+              </div>
+            </Link>
+            <Link href="https://2019.uottahack.ca/">
+              <div className='photoColumn'>
+                <img width="50px" src={Logo2019.src} alt = "Logo"/>
+                <span className="text-white p-10 hover-coloured-text">2019</span>
+              </div>
+            </Link>
+            <Link href="https://2020.uottahack.ca/">
+              <div className='photoColumn'>
+                <img width="50px" src={Logo2020.src} alt = "Logo"/>
+                <span className="text-white p-10 hover-coloured-text">2020</span>
+              </div>
+            </Link>
+            <Link href="https://2021.uottahack.ca/">
+              <div className='photoColumn'>
+                <img width="50px" src={Logo2021.src} alt = "Logo"/>
+                <span className="text-white p-10 hover-coloured-text">2021</span>
+              </div>
+            </Link>
+            <Link href="https://2023.uottahack.ca">
+              <div className='photoColumn'>
+                <img width="50px" src={Logo2023.src} alt = "Logo"/>
+                <span className="text-white coloured-text p-10 hover-coloured-text">2023</span>
+              </div>
+            </Link>
+            <Link href="https://2024.uottahack.ca/">
+              <div className='photoColumn'>
+                <img width="50px" src={Logo2024.src} alt = "Logo"/>
+                <span className="text-white p-10 hover-coloured-text">2024</span>
+              </div>
+            </Link>
+            */

@@ -1,3 +1,5 @@
+"use client";
+import { SnackbarProvider } from 'notistack';
 import AboutSection from "./components/AboutSection";
 import FAQSection from "./components/FAQSection";
 import HeroSection from "./components/HeroSection";
@@ -11,15 +13,17 @@ import SponsorUsSection from "./components/SponsorUsSection";
 export default function Home() {
   return (
     <main>
-      <MainHeader/>
-      <HeroSection />
-      
-      {/*<IntroSection/>
+      <SnackbarProvider maxSnack={3}>
+        <MainHeader/>
+        <HeroSection />
+
+        {/*<IntroSection/>
       <MainFooter/>
       <MainHeader/>
       <MapSection/>
       <SponsorsSection/>
       <SponsorUsSection/> */}
+      </SnackbarProvider>
     </main>
   );
 }
