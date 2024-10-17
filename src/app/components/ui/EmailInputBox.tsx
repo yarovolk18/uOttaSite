@@ -13,10 +13,15 @@ const EmailInputBox: React.FC = () => {
     setEmail(e.target.value);
   };
 
+  const isValidEmail = (email: string): boolean => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return emailRegex.test(email);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (email) {
+    if (isValidEmail(email)) {
       try {
         await addDoc(collection(db, "emails"), {
           email: email,
@@ -30,12 +35,13 @@ const EmailInputBox: React.FC = () => {
         enqueueSnackbar('Email submission failed. Please try again.', { variant: 'error' });
       }
     } else {
-      enqueueSnackbar('Please enter a valid email.', { variant: 'warning' });
+      enqueueSnackbar('Please enter a valid email address.', { variant: 'warning' });
     }
   };
 
   return (
     <form
+      onSubmit={handleSubmit}
       className="flex items-center h-14 p-1 backdrop-blur-md bg-white/70 rounded-lg overflow-hidden w-full max-w-md"
     >
       <input
@@ -46,7 +52,6 @@ const EmailInputBox: React.FC = () => {
         className="flex-grow px-4 py-3 mt-[2px] text-sm text-[#4375B6] placeholder-[#4375B6] bg-transparent outline-none leading-none"
       />
       <button
-        onClick={handleSubmit}
         type="submit"
         className="flex items-center justify-center bg-[#4375B6] hover:bg-[#3D6CA9] bg-opacity-90 text-white w-10 h-10 md:w-11 md:h-11 rounded-lg transition-all m-1"
       >
