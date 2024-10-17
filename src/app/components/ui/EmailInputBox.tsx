@@ -7,7 +7,7 @@ import { useSnackbar } from 'notistack';
 const EmailInputBox: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const { enqueueSnackbar } = useSnackbar(); // Use the snackbar hook
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -23,7 +23,7 @@ const EmailInputBox: React.FC = () => {
           timestamp: new Date(),
         });
         setIsSubmitted(true);
-        setEmail(''); // Clear input
+        setEmail('');
         enqueueSnackbar('Email successfully submitted!', { variant: 'success' });
       } catch (error) {
         console.error("Error adding email: ", error);
@@ -36,21 +36,21 @@ const EmailInputBox: React.FC = () => {
 
   return (
     <form
-      onSubmit={handleSubmit}
-      className="flex items-center h-12 md:h-14 p-1 backdrop-blur-md bg-white/70 rounded-lg overflow-hidden w-full max-w-md"
+      className="flex items-center h-14 p-1 backdrop-blur-md bg-white/70 rounded-lg overflow-hidden w-full max-w-md"
     >
       <input
         type="email"
         value={email}
         onChange={handleChange}
-        placeholder="Enter your email for up-to-date notifications"
+        placeholder="Enter your email for updates"
         className="flex-grow px-4 py-3 mt-[2px] text-sm text-[#4375B6] placeholder-[#4375B6] bg-transparent outline-none leading-none"
       />
       <button
+        onClick={handleSubmit}
         type="submit"
-        className="flex items-center justify-center bg-[#4375B6] hover:bg-[#3D6CA9] bg-opacity-90 text-white w-11 h-11 rounded-lg transition-all m-1"
+        className="flex items-center justify-center bg-[#4375B6] hover:bg-[#3D6CA9] bg-opacity-90 text-white w-10 h-10 md:w-11 md:h-11 rounded-lg transition-all m-1"
       >
-        {isSubmitted ? <FaCheck className="w-4 h-4" /> : <FaArrowRightLong className="w-4 h-4" />}
+        {isSubmitted ? <FaCheck className="w-4 h-4 md:w-4 md:h-4" /> : <FaArrowRightLong className="w-4 h-4 md:w-4 md:h-4" />}
       </button>
     </form>
   );
