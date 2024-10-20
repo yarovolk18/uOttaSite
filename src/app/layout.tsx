@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "uOttaHack 7",
   description:
-    "The largest Ottawa-based hackathon for the last half-decade, uOttaHack is returning for its most exciting iteration yet! To celebrate this momentous occasion, uOttaHack 6 is expanding the hacker experience with new initiatives to create an unforgettable weekend for its hackers.",
+    "The largest Ottawa-based hackathon for the last half-decade, uOttaHack is returning for its most exciting iteration yet! To celebrate this momentous occasion, uOttaHack 7 is expanding the hacker experience with new initiatives to create an unforgettable weekend for its hackers.",
 };
 
 export default function RootLayout({

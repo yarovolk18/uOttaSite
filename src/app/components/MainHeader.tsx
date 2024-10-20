@@ -29,15 +29,15 @@ const MainHeader = () => {
   const NavLinks = () => (
     <nav className={`${isMobile ? 'flex flex-col space-y-4' : 'flex space-x-16'} text-sm font-light`}>
       <Link href="https://www.uottahack.ca/" target="_blank" className="relative group">
-        <span>About</span>
+        <span className='text-shadow-navbar-subtle'>About</span>
         <span className="absolute left-0 -bottom-0.5 w-full h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
       </Link>
       <Link href="https://www.uottahack.ca/events" target="_blank" className="relative group">
-        <span>Past Events</span>
+        <span className='text-shadow-navbar-subtle'>Past Events</span>
         <span className="absolute left-0 -bottom-0.5 w-full h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
       </Link>
       <Link href="https://www.uottahack.ca/faq" target="_blank" className="relative group">
-        <span>FAQs</span>
+        <span className='text-shadow-navbar-subtle'>FAQs</span>
         <span className="absolute left-0 -bottom-0.5 w-full h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
       </Link>
     </nav>
@@ -117,7 +117,7 @@ const MainHeader = () => {
               <img
                 src={mlh_black.src}
                 alt="MLH 2025 Badge"
-                className="h-[20%] w-auto"
+                className="h-[100px] w-auto"
               />
             </div>
 

@@ -227,3 +227,13 @@ a {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4),
     /* Smaller shadow with lighter opacity */ 2px 2px 3px rgba(0, 0, 0, 0.4); /* Larger shadow with lighter opacity */
 }
+
+.text-shadow-hero {
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Adjust values as needed */
+}
+
+.text-shadow-navbar-subtle {
+  color: white;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3); /* Adjust values as needed */
+}

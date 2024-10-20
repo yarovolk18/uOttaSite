@@ -42,7 +42,7 @@ const EmailInputBox: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-center h-14 p-1 backdrop-blur-md bg-white/70 rounded-lg overflow-hidden w-full max-w-md"
+      className="flex items-center h-14 p-1 backdrop-blur-md bg-white/70 rounded-lg overflow-hidden w-full max-w-md shadow-xl"
     >
       <input
         type="email"
